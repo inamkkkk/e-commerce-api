@@ -12,16 +12,24 @@ const comparePassword = async (candidatePassword, hashedPassword) => {
 };
 
 const generateToken = (payload) => {
+  // TODO: Consider adding issuer and audience claims to the JWT for enhanced security.
   return jwt.sign(payload, config.jwtSecret, { expiresIn: config.jwtExpiresIn });
 };
 
 const verifyToken = (token) => {
-  return jwt.verify(token, config.jwtSecret);
+  // TODO: Implement robust error handling for JWT verification failures,
+  // such as expired tokens or invalid signatures.
+  try {
+    return jwt.verify(token, config.jwtSecret);
+  } catch (error) {
+    // TODO: Log JWT verification errors for security monitoring.
+    console.error('JWT Verification Error:', error.message);
+    throw new Error('Authentication failed'); // Or a more specific error
+  }
 };
 
 module.exports = {
   hashPassword,
   comparePassword,
   generateToken,
-  verifyToken,
-};
+  verifyToken};
