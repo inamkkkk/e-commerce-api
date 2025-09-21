@@ -5,6 +5,105 @@
     },
     {
       "summary": "This file is an example environment configuration file. It lists the environment variables required for the application to run, along with their default or example values.  It should not be committed to version control with sensitive information like JWT_SECRET."
+    },
+    {
+      "paths": {
+        "/api/v1/health": {
+          "get": {
+            "summary": "Health check endpoint",
+            "tags": [
+              "Health"
+            ],
+            "responses": {
+              "200": {
+                "description": "API is healthy",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "API is healthy!"
+                        },
+                        "uptime": {
+                          "type": "number",
+                          "description": "Server uptime in seconds"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/api/v1/auth/{...}": {
+          "get": {
+            "summary": "Authentication routes (e.g., login, register)",
+            "tags": [
+              "Authentication"
+            ],
+            "description": "This path is a placeholder for various authentication-related endpoints provided by authRoutes. Please refer to authRoutes for specific details."
+          },
+          "post": {
+            "summary": "Authentication routes (e.g., login, register)",
+            "tags": [
+              "Authentication"
+            ],
+            "description": "This path is a placeholder for various authentication-related endpoints provided by authRoutes. Please refer to authRoutes for specific details."
+          }
+        },
+        "/api/v1/products/{...}": {
+          "get": {
+            "summary": "Product management routes",
+            "tags": [
+              "Products"
+            ],
+            "description": "This path is a placeholder for various product-related endpoints provided by productRoutes. Please refer to productRoutes for specific details."
+          },
+          "post": {
+            "summary": "Product management routes",
+            "tags": [
+              "Products"
+            ],
+            "description": "This path is a placeholder for various product-related endpoints provided by productRoutes. Please refer to productRoutes for specific details."
+          }
+        },
+        "/api/v1/cart/{...}": {
+          "get": {
+            "summary": "Shopping cart routes",
+            "tags": [
+              "Cart"
+            ],
+            "description": "This path is a placeholder for various cart-related endpoints provided by cartRoutes. Please refer to cartRoutes for specific details."
+          },
+          "post": {
+            "summary": "Shopping cart routes",
+            "tags": [
+              "Cart"
+            ],
+            "description": "This path is a placeholder for various cart-related endpoints provided by cartRoutes. Please refer to cartRoutes for specific details."
+          }
+        },
+        "/api/v1/orders/{...}": {
+          "get": {
+            "summary": "Order management routes",
+            "tags": [
+              "Orders"
+            ],
+            "description": "This path is a placeholder for various order-related endpoints provided by orderRoutes. Please refer to orderRoutes for specific details."
+          },
+          "post": {
+            "summary": "Order management routes",
+            "tags": [
+              "Orders"
+            ],
+            "description": "This path is a placeholder for various order-related endpoints provided by orderRoutes. Please refer to orderRoutes for specific details."
+          }
+        }
+      },
+      "summary": "Main application entry point. Sets up Express server, connects to database, mounts routes, and defines global middlewares."
     }
   ]
 }
