@@ -1597,6 +1597,347 @@
           }
         }
       }
+    },
+    {
+      "paths": {
+        "/products": {
+          "get": {
+            "summary": "Get all products",
+            "tags": [
+              "Products"
+            ],
+            "parameters": [
+              {
+                "in": "query",
+                "name": "sort",
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Sort order for products (e.g., 'price', '-price' for descending)"
+              },
+              {
+                "in": "query",
+                "name": "limit",
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "Maximum number of products to return"
+              },
+              {
+                "in": "query",
+                "name": "page",
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "Page number for pagination"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "A list of products",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "example": "success"
+                        },
+                        "results": {
+                          "type": "integer",
+                          "description": "Number of products returned",
+                          "example": 10
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "products": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/Product"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "500": {
+                "description": "Internal server error"
+              }
+            }
+          },
+          "post": {
+            "summary": "Create a new product",
+            "tags": [
+              "Products"
+            ],
+            "requestBody": {
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProductInput"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "201": {
+                "description": "Product created successfully",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "example": "success"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "product": {
+                              "$ref": "#/components/schemas/Product"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Bad request, e.g., missing required fields or invalid input"
+              },
+              "500": {
+                "description": "Internal server error"
+              }
+            }
+          }
+        },
+        "/products/{id}": {
+          "get": {
+            "summary": "Get a single product by ID",
+            "tags": [
+              "Products"
+            ],
+            "parameters": [
+              {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ID of the product to retrieve"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Product found",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "example": "success"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "product": {
+                              "$ref": "#/components/schemas/Product"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Product not found"
+              },
+              "500": {
+                "description": "Internal server error"
+              }
+            }
+          },
+          "patch": {
+            "summary": "Update a product by ID",
+            "tags": [
+              "Products"
+            ],
+            "parameters": [
+              {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ID of the product to update"
+              }
+            ],
+            "requestBody": {
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ProductInput"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Product updated successfully",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "example": "success"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "product": {
+                              "$ref": "#/components/schemas/Product"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Bad request, e.g., invalid input for update"
+              },
+              "404": {
+                "description": "Product not found"
+              },
+              "500": {
+                "description": "Internal server error"
+              }
+            }
+          },
+          "delete": {
+            "summary": "Delete a product by ID",
+            "tags": [
+              "Products"
+            ],
+            "parameters": [
+              {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ID of the product to delete"
+              }
+            ],
+            "responses": {
+              "204": {
+                "description": "Product deleted successfully"
+              },
+              "404": {
+                "description": "Product not found"
+              },
+              "500": {
+                "description": "Internal server error"
+              }
+            }
+          }
+        }
+      },
+      "components": {
+        "schemas": {
+          "Product": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique identifier for the product",
+                "readOnly": true
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the product"
+              },
+              "description": {
+                "type": "string",
+                "description": "Detailed description of the product"
+              },
+              "price": {
+                "type": "number",
+                "format": "float",
+                "description": "Price of the product"
+              },
+              "category": {
+                "type": "string",
+                "description": "Category the product belongs to"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Timestamp of product creation",
+                "readOnly": true
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Timestamp of last product update",
+                "readOnly": true
+              }
+            },
+            "required": [
+              "name",
+              "price",
+              "category"
+            ]
+          },
+          "ProductInput": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the product"
+              },
+              "description": {
+                "type": "string",
+                "description": "Detailed description of the product"
+              },
+              "price": {
+                "type": "number",
+                "format": "float",
+                "description": "Price of the product"
+              },
+              "category": {
+                "type": "string",
+                "description": "Category the product belongs to"
+              }
+            },
+            "required": [
+              "name",
+              "price",
+              "category"
+            ]
+          }
+        }
+      }
     }
   ]
 }
