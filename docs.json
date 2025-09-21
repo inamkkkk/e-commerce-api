@@ -1,0 +1,7 @@
+{
+  "docs": [
+    {
+      "summary": "This file describes the metadata for the Node.js e-commerce API backend. It includes the project name, version, description, entry point, scripts for starting and development, keywords, author, license, and lists of its dependencies and development dependencies."
+    }
+  ]
+}

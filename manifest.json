@@ -1,0 +1,285 @@
+{
+  "files": [
+    {
+      "path": "package.json",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": true,
+      "lastRefinedAt": "2025-09-21T19:42:26.931Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": ".env.example",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:42:44.653Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/index.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:43:03.125Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/config/index.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:43:22.889Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/models/User.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:43:42.823Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/models/Product.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:44:02.990Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/models/Cart.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:44:22.863Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/models/Order.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:44:42.922Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/services/authService.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:45:02.703Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/services/productService.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:45:22.876Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/services/cartService.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:45:43.425Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/services/orderService.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:46:05.933Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/controllers/authController.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:46:24.855Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/controllers/productController.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:46:45.133Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/controllers/cartController.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:47:04.806Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/controllers/orderController.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:47:25.311Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/routes/authRoutes.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:47:45.706Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/routes/productRoutes.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:48:05.484Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/routes/cartRoutes.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:48:25.446Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/routes/orderRoutes.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:48:44.366Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/middlewares/authMiddleware.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:49:04.059Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/middlewares/validationMiddleware.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 2,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:49:24.222Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/middlewares/errorHandler.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:49:43.479Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/utils/authUtils.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:50:02.533Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/utils/validation/authValidation.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:50:22.086Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/utils/validation/productValidation.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:50:42.355Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/utils/validation/cartValidation.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:51:01.513Z",
+      "modelUsed": "gemini-2.5-pro"
+    },
+    {
+      "path": "src/utils/validation/orderValidation.js",
+      "visited": true,
+      "ok": true,
+      "error": null,
+      "attempts": 1,
+      "documented": false,
+      "lastRefinedAt": "2025-09-21T19:51:20.660Z",
+      "modelUsed": "gemini-2.5-pro"
+    }
+  ],
+  "generatedAt": "2025-09-21T19:42:25.914Z"
+}
