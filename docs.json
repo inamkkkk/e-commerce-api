@@ -3563,6 +3563,84 @@
     },
     {
       "summary": "Utility file containing Joi validation schemas for authentication endpoints (signup and login)."
+    },
+    {
+      "components": {
+        "schemas": {
+          "CreateProductSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the product.",
+                "minLength": 3,
+                "maxLength": 100,
+                "example": "Laptop XYZ"
+              },
+              "description": {
+                "type": "string",
+                "description": "A detailed description of the product.",
+                "minLength": 10,
+                "example": "A high-performance laptop with a 15-inch display."
+              },
+              "price": {
+                "type": "number",
+                "format": "float",
+                "description": "The price of the product.",
+                "positive": true,
+                "scale": 2,
+                "example": 1200.5
+              },
+              "stock": {
+                "type": "integer",
+                "description": "The current stock quantity of the product.",
+                "minimum": 0,
+                "example": 50
+              }
+            },
+            "required": [
+              "name",
+              "description",
+              "price",
+              "stock"
+            ]
+          },
+          "UpdateProductSchema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The updated name of the product.",
+                "minLength": 3,
+                "maxLength": 100,
+                "example": "Gaming Laptop XYZ"
+              },
+              "description": {
+                "type": "string",
+                "description": "The updated description of the product.",
+                "minLength": 10,
+                "example": "An even more powerful gaming laptop with advanced cooling."
+              },
+              "price": {
+                "type": "number",
+                "format": "float",
+                "description": "The updated price of the product.",
+                "positive": true,
+                "scale": 2,
+                "example": 1350.75
+              },
+              "stock": {
+                "type": "integer",
+                "description": "The updated stock quantity of the product.",
+                "minimum": 0,
+                "example": 45
+              }
+            },
+            "minProperties": 1,
+            "description": "At least one field must be provided for update."
+          }
+        }
+      }
     }
   ]
 }
