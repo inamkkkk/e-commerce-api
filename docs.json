@@ -2,6 +2,9 @@
   "docs": [
     {
       "summary": "This file describes the metadata for the Node.js e-commerce API backend. It includes the project name, version, description, entry point, scripts for starting and development, keywords, author, license, and lists of its dependencies and development dependencies."
+    },
+    {
+      "summary": "This file is an example environment configuration file. It lists the environment variables required for the application to run, along with their default or example values.  It should not be committed to version control with sensitive information like JWT_SECRET."
     }
   ]
 }
