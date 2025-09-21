@@ -3551,6 +3551,9 @@
     },
     {
       "summary": "Authentication and Authorization Middleware. This file provides middleware functions to authenticate incoming requests using JWT tokens and authorize access based on user roles."
+    },
+    {
+      "summary": "This file exports a validation middleware factory function. It's designed to be used with validation schemas (e.g., Joi schemas) to validate request bodies before they reach route handlers. If validation fails, it creates and passes an HTTP 400 error to the next middleware, otherwise, it proceeds to the next middleware."
     }
   ]
 }
