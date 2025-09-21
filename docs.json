@@ -3548,6 +3548,9 @@
           }
         }
       }
+    },
+    {
+      "summary": "Authentication and Authorization Middleware. This file provides middleware functions to authenticate incoming requests using JWT tokens and authorize access based on user roles."
     }
   ]
 }
