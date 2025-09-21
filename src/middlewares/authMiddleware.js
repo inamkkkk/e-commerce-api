@@ -29,6 +29,7 @@ const authenticate = async (req, res, next) => {
     if (error.name === 'JsonWebTokenError') {
       return next(createHttpError(401, 'Invalid token.'));
     }
+    // TODO: Add more specific error handling for potential database errors or other unexpected issues.
     next(createHttpError(500, 'Authentication failed.'));
   }
 };
@@ -40,6 +41,7 @@ const authorize = (roles = []) => {
 
   return (req, res, next) => {
     if (!req.user || !req.user.role) {
+      // TODO: Consider more specific error messages based on whether req.user or req.user.role is missing.
       return next(createHttpError(401, 'User not authenticated or role not found.'));
     }
 
@@ -52,5 +54,4 @@ const authorize = (roles = []) => {
 
 module.exports = {
   authenticate,
-  authorize,
-};
+  authorize};
