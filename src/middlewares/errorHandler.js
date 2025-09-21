@@ -24,11 +24,18 @@ const errorHandler = (err, req, res, next) => {
     message = err.message;
   }
 
+  // TODO: Implement more specific error handling for common scenarios like JWT errors,
+  // database connection errors, or other application-specific errors.
+  // For example:
+  // if (err.name === 'JsonWebTokenError' || err.name === 'TokenExpiredError') {
+  //   statusCode = 401;
+  //   message = 'Authentication error';
+  // }
+
   res.status(statusCode).json({
     status: 'error',
     statusCode,
-    message,
-  });
+    message});
 };
 
 module.exports = errorHandler;
