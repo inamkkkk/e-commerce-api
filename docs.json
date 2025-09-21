@@ -3560,6 +3560,9 @@
     },
     {
       "summary": "Utility functions for authentication, including password hashing and JWT generation/verification."
+    },
+    {
+      "summary": "Utility file containing Joi validation schemas for authentication endpoints (signup and login)."
     }
   ]
 }
