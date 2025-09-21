@@ -43,6 +43,12 @@ const addToCart = async (userId, itemsToAdd) => {
 
   await cart.save();
   // TODO: Implement more robust stock management (e.g., reserve stock, transactional updates)
+  // For now, we will simulate stock deduction upon adding to cart for demonstration.
+  // In a real-world scenario, this would typically happen during checkout.
+  for (const item of itemsToAdd) {
+    const { productId, quantity } = item;
+    await Product.findByIdAndUpdate(productId, { $inc: { stock: -quantity } });
+  }
   return cart.populate('items.productId', 'name price');
 };
 
@@ -71,11 +77,27 @@ const removeFromCart = async (userId, itemsToRemove) => {
   }
 
   await cart.save();
+  // TODO: Implement logic to return stock to product inventory if items are removed from cart.
+  // This logic should be carefully considered to avoid race conditions or incorrect stock updates.
+  // For demonstration, we will simulate returning stock.
+  for (const item of itemsToRemove) {
+    const { productId, quantity } = item;
+    // Check if the item was actually removed or quantity decreased in the cart
+    const updatedItem = cart.items.find(cartItem => cartItem.productId.toString() === productId);
+    let quantityReturned = quantity;
+    if (updatedItem) { // Item still in cart, but quantity decreased
+      const originalItemInCart = await Cart.findOne({ userId }).select('items'); // Fetch original cart state to determine quantity deduction
+      const originalItemQuantity = originalItemInCart.items.find(i => i.productId.toString() === productId)?.quantity || 0;
+      quantityReturned = originalItemQuantity - updatedItem.quantity;
+    }
+    // We need to be careful here not to over-return stock.
+    // A more robust approach would involve tracking the original quantity before removal.
+    await Product.findByIdAndUpdate(productId, { $inc: { stock: quantityReturned } });
+  }
   return cart.populate('items.productId', 'name price');
 };
 
 module.exports = {
   getCartByUserId,
   addToCart,
-  removeFromCart,
-};
+  removeFromCart};
