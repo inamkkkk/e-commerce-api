@@ -336,6 +336,9 @@
           }
         }
       }
+    },
+    {
+      "summary": "Authentication service for user signup and login."
     }
   ]
 }
