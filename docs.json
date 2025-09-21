@@ -1938,6 +1938,282 @@
           }
         }
       }
+    },
+    {
+      "paths": {
+        "/cart": {
+          "get": {
+            "summary": "Get the user's shopping cart",
+            "tags": [
+              "Cart"
+            ],
+            "responses": {
+              "200": {
+                "description": "Successfully retrieved the user's cart",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "example": "success"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "cart": {
+                              "$ref": "#/components/schemas/Cart"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "401": {
+                "description": "Unauthorized - User not authenticated"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+            },
+            "security": [
+              {
+                "bearerAuth": []
+              }
+            ]
+          },
+          "post": {
+            "summary": "Add items to the user's shopping cart",
+            "tags": [
+              "Cart"
+            ],
+            "requestBody": {
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/CartItemInput"
+                        },
+                        "description": "Array of items to add to the cart"
+                      }
+                    },
+                    "required": [
+                      "items"
+                    ]
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Items successfully added to the cart",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "example": "success"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "cart": {
+                              "$ref": "#/components/schemas/Cart"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Bad Request - Invalid items format or missing required fields"
+              },
+              "401": {
+                "description": "Unauthorized - User not authenticated"
+              },
+              "404": {
+                "description": "Not Found - One or more products not found"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+            },
+            "security": [
+              {
+                "bearerAuth": []
+              }
+            ]
+          },
+          "delete": {
+            "summary": "Remove items from the user's shopping cart",
+            "tags": [
+              "Cart"
+            ],
+            "requestBody": {
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/CartItemInput"
+                        },
+                        "description": "Array of items to remove from the cart"
+                      }
+                    },
+                    "required": [
+                      "items"
+                    ]
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Items successfully removed from the cart",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "example": "success"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "cart": {
+                              "$ref": "#/components/schemas/Cart"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Bad Request - Invalid items format or missing required fields"
+              },
+              "401": {
+                "description": "Unauthorized - User not authenticated"
+              },
+              "404": {
+                "description": "Not Found - One or more items not found in the cart"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+            },
+            "security": [
+              {
+                "bearerAuth": []
+              }
+            ]
+          }
+        }
+      },
+      "components": {
+        "schemas": {
+          "CartItemInput": {
+            "type": "object",
+            "properties": {
+              "productId": {
+                "type": "string",
+                "description": "The ID of the product",
+                "example": "prod_123abc"
+              },
+              "quantity": {
+                "type": "integer",
+                "description": "The quantity of the product to add/remove",
+                "minimum": 1,
+                "example": 2
+              }
+            },
+            "required": [
+              "productId",
+              "quantity"
+            ]
+          },
+          "CartItem": {
+            "type": "object",
+            "properties": {
+              "productId": {
+                "type": "string",
+                "description": "The ID of the product",
+                "example": "prod_123abc"
+              },
+              "quantity": {
+                "type": "integer",
+                "description": "The quantity of the product in the cart",
+                "minimum": 1,
+                "example": 2
+              },
+              "price": {
+                "type": "number",
+                "format": "float",
+                "description": "The price of a single unit of the product",
+                "example": 19.99
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the product",
+                "example": "Example Gadget"
+              }
+            },
+            "required": [
+              "productId",
+              "quantity",
+              "price",
+              "name"
+            ]
+          },
+          "Cart": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "The ID of the user associated with this cart",
+                "example": "user_xyz789"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CartItem"
+                },
+                "description": "Array of items currently in the cart"
+              },
+              "totalAmount": {
+                "type": "number",
+                "format": "float",
+                "description": "The total amount of all items in the cart",
+                "example": 79.96
+              }
+            },
+            "required": [
+              "userId",
+              "items",
+              "totalAmount"
+            ]
+          }
+        }
+      }
     }
   ]
 }
