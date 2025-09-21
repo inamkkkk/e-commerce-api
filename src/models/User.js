@@ -5,14 +5,12 @@ const UserSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Name is required'],
-    trim: true,
-  },
+    trim: true},
   email: {
     type: String,
     required: [true, 'Email is required'],
     unique: true,
-    match: [/.+@.+\..+/, 'Please fill a valid email address'],
-  },
+    match: [/.+@.+\..+/, 'Please fill a valid email address']},
   password: {
     type: String,
     required: [true, 'Password is required'],
@@ -22,13 +20,10 @@ const UserSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: ['customer', 'admin'],
-    default: 'customer',
-  },
+    default: 'customer'},
   createdAt: {
     type: Date,
-    default: Date.now,
-  },
-});
+    default: Date.now}});
 
 // Hash password before saving
 UserSchema.pre('save', async function(next) {
@@ -38,5 +33,20 @@ UserSchema.pre('save', async function(next) {
   this.password = await hashPassword(this.password);
   next();
 });
+
+// TODO: Add a virtual field for password confirmation if needed for signup forms
+// UserSchema.virtual('passwordConfirm')
+//   .get(() => this.password)
+//   .set(function(value) {
+//     this.password = value;
+//   });
+
+// TODO: Add a pre-save hook to validate password confirmation if the virtual field is implemented
+// UserSchema.pre('save', function(next) {
+//   if (this.isModified('password') && this.password !== this.passwordConfirm) {
+//     return next(new Error('Passwords do not match'));
+//   }
+//   next();
+// });
 
 module.exports = mongoose.model('User', UserSchema);
