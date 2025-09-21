@@ -104,6 +104,9 @@
         }
       },
       "summary": "Main application entry point. Sets up Express server, connects to database, mounts routes, and defines global middlewares."
+    },
+    {
+      "summary": "Configuration and database connection module. Exports application configuration settings and a function to establish a MongoDB connection."
     }
   ]
 }
