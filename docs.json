@@ -3557,6 +3557,9 @@
     },
     {
       "summary": "Express.js error handling middleware. This middleware catches errors thrown during request processing and formats them into a JSON response. It handles various error types, including generic HTTP errors, Mongoose validation errors, cast errors, duplicate key errors, and `http-errors` instances. It logs the error to the console and sends a standardized JSON response with status code and message."
+    },
+    {
+      "summary": "Utility functions for authentication, including password hashing and JWT generation/verification."
     }
   ]
 }
