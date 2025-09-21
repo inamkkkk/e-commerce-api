@@ -2772,6 +2772,314 @@
           }
         }
       }
+    },
+    {
+      "paths": {
+        "/products": {
+          "get": {
+            "summary": "Retrieve a list of all products",
+            "tags": [
+              "Products"
+            ],
+            "responses": {
+              "200": {
+                "description": "A list of products",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Product"
+                      }
+                    }
+                  }
+                }
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+            }
+          },
+          "post": {
+            "summary": "Create a new product",
+            "tags": [
+              "Products",
+              "Admin"
+            ],
+            "security": [
+              {
+                "bearerAuth": []
+              }
+            ],
+            "requestBody": {
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CreateProductInput"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "201": {
+                "description": "Product created successfully",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Product"
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Bad Request - Invalid input"
+              },
+              "401": {
+                "description": "Unauthorized - Authentication failed"
+              },
+              "403": {
+                "description": "Forbidden - User does not have admin privileges"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+            }
+          }
+        },
+        "/products/{id}": {
+          "get": {
+            "summary": "Retrieve a single product by ID",
+            "tags": [
+              "Products"
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ID of the product to retrieve"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "A single product object",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Product"
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Product not found"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+            }
+          },
+          "patch": {
+            "summary": "Update an existing product by ID",
+            "tags": [
+              "Products",
+              "Admin"
+            ],
+            "security": [
+              {
+                "bearerAuth": []
+              }
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ID of the product to update"
+              }
+            ],
+            "requestBody": {
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/UpdateProductInput"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Product updated successfully",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/Product"
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Bad Request - Invalid input"
+              },
+              "401": {
+                "description": "Unauthorized - Authentication failed"
+              },
+              "403": {
+                "description": "Forbidden - User does not have admin privileges"
+              },
+              "404": {
+                "description": "Product not found"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+            }
+          },
+          "delete": {
+            "summary": "Delete a product by ID",
+            "tags": [
+              "Products",
+              "Admin"
+            ],
+            "security": [
+              {
+                "bearerAuth": []
+              }
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The ID of the product to delete"
+              }
+            ],
+            "responses": {
+              "204": {
+                "description": "Product deleted successfully"
+              },
+              "401": {
+                "description": "Unauthorized - Authentication failed"
+              },
+              "403": {
+                "description": "Forbidden - User does not have admin privileges"
+              },
+              "404": {
+                "description": "Product not found"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+            }
+          }
+        }
+      },
+      "components": {
+        "schemas": {
+          "Product": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "readOnly": true
+              },
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "price": {
+                "type": "number",
+                "format": "float"
+              },
+              "stock": {
+                "type": "integer"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "description",
+              "price",
+              "stock"
+            ]
+          },
+          "CreateProductInput": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the product"
+              },
+              "description": {
+                "type": "string",
+                "description": "A detailed description of the product"
+              },
+              "price": {
+                "type": "number",
+                "format": "float",
+                "description": "The price of the product"
+              },
+              "stock": {
+                "type": "integer",
+                "description": "The current stock quantity of the product"
+              }
+            },
+            "required": [
+              "name",
+              "description",
+              "price",
+              "stock"
+            ]
+          },
+          "UpdateProductInput": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the product"
+              },
+              "description": {
+                "type": "string",
+                "description": "A detailed description of the product"
+              },
+              "price": {
+                "type": "number",
+                "format": "float",
+                "description": "The price of the product"
+              },
+              "stock": {
+                "type": "integer",
+                "description": "The current stock quantity of the product"
+              }
+            },
+            "description": "Fields that can be updated for a product"
+          }
+        }
+      }
     }
   ]
 }
