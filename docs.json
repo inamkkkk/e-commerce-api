@@ -260,6 +260,82 @@
           }
         }
       }
+    },
+    {
+      "components": {
+        "schemas": {
+          "OrderItem": {
+            "type": "object",
+            "properties": {
+              "productId": {
+                "type": "string",
+                "description": "Reference to the Product ID.",
+                "format": "objectId"
+              },
+              "quantity": {
+                "type": "integer",
+                "description": "The quantity of the product ordered.",
+                "minimum": 1
+              },
+              "priceAtOrder": {
+                "type": "number",
+                "description": "The price of the item at the time of order.",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "productId",
+              "quantity",
+              "priceAtOrder"
+            ],
+            "description": "Schema for an item within an order."
+          },
+          "Order": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string",
+                "description": "Reference to the User ID who placed the order.",
+                "format": "objectId"
+              },
+              "items": {
+                "type": "array",
+                "description": "An array of items included in the order.",
+                "items": {
+                  "$ref": "#/components/schemas/OrderItem"
+                },
+                "minItems": 1
+              },
+              "totalPrice": {
+                "type": "number",
+                "description": "The total price of the order.",
+                "minimum": 0
+              },
+              "status": {
+                "type": "string",
+                "description": "The current status of the order.",
+                "enum": [
+                  "pending",
+                  "completed",
+                  "cancelled"
+                ],
+                "default": "pending"
+              },
+              "createdAt": {
+                "type": "string",
+                "description": "The date and time the order was created.",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "userId",
+              "items",
+              "totalPrice"
+            ],
+            "description": "Represents a customer order."
+          }
+        }
+      }
     }
   ]
 }
