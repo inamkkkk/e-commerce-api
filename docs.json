@@ -2504,6 +2504,274 @@
           }
         }
       }
+    },
+    {
+      "paths": {
+        "/signup": {
+          "post": {
+            "summary": "User signup",
+            "tags": [
+              "Auth"
+            ],
+            "requestBody": {
+              "description": "User registration data",
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SignupRequest"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "201": {
+                "description": "User created successfully",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "User registered successfully"
+                        },
+                        "userId": {
+                          "type": "string",
+                          "format": "uuid",
+                          "example": "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Bad Request - Invalid input data",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Invalid input data"
+                        },
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "example": "email"
+                              },
+                              "message": {
+                                "type": "string",
+                                "example": "Email is required"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "409": {
+                "description": "Conflict - User already exists",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "User with this email already exists"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "500": {
+                "description": "Internal Server Error",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "An unexpected error occurred"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/login": {
+          "post": {
+            "summary": "User login",
+            "tags": [
+              "Auth"
+            ],
+            "requestBody": {
+              "description": "User login credentials",
+              "required": true,
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/LoginRequest"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Login successful",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Login successful"
+                        },
+                        "token": {
+                          "type": "string",
+                          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Bad Request - Invalid input data",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Invalid input data"
+                        },
+                        "errors": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "field": {
+                                "type": "string",
+                                "example": "email"
+                              },
+                              "message": {
+                                "type": "string",
+                                "example": "Email is required"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "401": {
+                "description": "Unauthorized - Invalid credentials",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "Invalid email or password"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "500": {
+                "description": "Internal Server Error",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "example": "An unexpected error occurred"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "components": {
+        "schemas": {
+          "SignupRequest": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "User's full name",
+                "example": "John Doe"
+              },
+              "email": {
+                "type": "string",
+                "format": "email",
+                "description": "User's email address",
+                "example": "john.doe@example.com"
+              },
+              "password": {
+                "type": "string",
+                "format": "password",
+                "description": "User's password",
+                "minLength": 8,
+                "example": "securePassword123"
+              }
+            },
+            "required": [
+              "name",
+              "email",
+              "password"
+            ]
+          },
+          "LoginRequest": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "format": "email",
+                "description": "User's email address",
+                "example": "john.doe@example.com"
+              },
+              "password": {
+                "type": "string",
+                "format": "password",
+                "description": "User's password",
+                "example": "securePassword123"
+              }
+            },
+            "required": [
+              "email",
+              "password"
+            ]
+          }
+        }
+      }
     }
   ]
 }
