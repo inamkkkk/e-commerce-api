@@ -1,0 +1,25 @@
+{
+  "name": "node-ecommerce-api",
+  "version": "1.0.0",
+  "description": "Node.js backend for a simple e-commerce site. Provides APIs for user authentication, product listings, shopping cart, and order management.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "http-errors": "^2.0.0",
+    "joi": "^17.13.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.2"
+  }
+}
