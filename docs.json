@@ -3641,6 +3641,82 @@
           }
         }
       }
+    },
+    {
+      "summary": "Joi schemas for validating cart-related operations.",
+      "components": {
+        "schemas": {
+          "CartItem": {
+            "type": "object",
+            "properties": {
+              "productId": {
+                "type": "string",
+                "description": "The unique identifier of the product.",
+                "example": "60d5ec49f1c7b14b90a0a1a1"
+              },
+              "quantity": {
+                "type": "integer",
+                "description": "The number of items. Must be at least 1.",
+                "minimum": 1,
+                "example": 5
+              }
+            },
+            "required": [
+              "productId",
+              "quantity"
+            ]
+          },
+          "AddToCartRequest": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "description": "An array of items to add to the cart.",
+                "items": {
+                  "$ref": "#/components/schemas/CartItem"
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "items"
+            ]
+          },
+          "RemoveFromCartRequest": {
+            "type": "object",
+            "properties": {
+              "items": {
+                "type": "array",
+                "description": "An array of items to remove from the cart.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "productId": {
+                      "type": "string",
+                      "description": "The unique identifier of the product to remove.",
+                      "example": "60d5ec49f1c7b14b90a0a1a1"
+                    },
+                    "quantity": {
+                      "type": "integer",
+                      "description": "The number of items to remove. Must be at least 1.",
+                      "minimum": 1,
+                      "example": 2
+                    }
+                  },
+                  "required": [
+                    "productId",
+                    "quantity"
+                  ]
+                },
+                "minItems": 1
+              }
+            },
+            "required": [
+              "items"
+            ]
+          }
+        }
+      }
     }
   ]
 }
